@@ -65,14 +65,13 @@ const getOneAlphabet =async(req,res)=> {
 const updateAlphabet = async (req, res) => {
   try {
     const { key, text, textAudio, storyText, storyAudio,uid,image } = req.body;
-    const {data} = req.params
-    const duplicateKey = await EnglishAlphabet.find({ data:data });
-    // if (duplicateKey.length !== 0) {
-    //   throw new CustomError.BadRequestError("Key already exists");
-    // }
-    if (duplicateKey.length === 0) {
-      throw new CustomError.BadRequestError("cannot find item to update");
+    const duplicateKey = await EnglishAlphabet.find({ key: key });
+    if (duplicateKey.length !== 0) {
+      throw new CustomError.BadRequestError("Key already exists");
     }
+    // if (duplicateKey.length === 0) {
+    //   throw new CustomError.BadRequestError("cannot find item to update");
+    // }
 
 
     const update = {};
@@ -84,6 +83,9 @@ const updateAlphabet = async (req, res) => {
     if (uid) update.uid = uid;
     if (image) update.image = image;
 
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      throw new CustomError.BadRequestError("Invalid ID format");
+    }
 
     const updatedItem = await EnglishAlphabet.findOneAndUpdate(
       { _id: req.params.id },
