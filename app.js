@@ -26,8 +26,7 @@ app.use('/api/v1/englishAlphabet',englishAlphabetRouter)
 const notFoundMiddleware = require('./middleware/notFound')
 const errorHandlerMiddleware = require('./middleware/ErrorHandler')
 
-app.get('/',(req,res)=> (
-  res.send('hello world')))
+
 
 
   

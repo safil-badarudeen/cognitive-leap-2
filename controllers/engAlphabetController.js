@@ -65,8 +65,8 @@ const getOneAlphabet =async(req,res)=> {
 const updateAlphabet = async (req, res) => {
   try {
     const { key, text, textAudio, storyText, storyAudio,uid,image } = req.body;
-
-    const duplicateKey = await EnglishAlphabet.find({ key: key });
+    const {data} = req.params
+    const duplicateKey = await EnglishAlphabet.find({ data:data });
     if (duplicateKey.length !== 0) {
       throw new CustomError.BadRequestError("Key already exists");
     }
