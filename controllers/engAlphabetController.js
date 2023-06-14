@@ -1,6 +1,7 @@
 const EnglishAlphabet = require("../model/englishAlphabet");
 const CustomError = require("../errors");
 const { StatusCodes } = require("http-status-codes");
+const mongoose = require("mongoose");
 
 const createAlphabet = async (req, res) => {
   try {
