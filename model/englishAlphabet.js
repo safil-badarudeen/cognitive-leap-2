@@ -22,6 +22,11 @@ const englishAlphabetSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    category: {
+      type: String,
+      default: "EnglishAlphabet", // Set the default value to "EnglishAlphabet"
+      required: true,
+    },
     uid:{
       type:  String,
       required: true,
@@ -30,8 +35,7 @@ const englishAlphabetSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-  },
-  
+  }, 
 );
 
 module.exports = mongoose.model("EnglishAlphabet", englishAlphabetSchema);
