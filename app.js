@@ -14,6 +14,7 @@ const morgan = require('morgan')
 //routes
 const adminRouter = require('./routes/adminRoute')
 const englishAlphabetRouter = require('./routes/engAlphaRoute')
+const categoryRouter = require('./routes/categoryRoute')
 
 
 //body parser middleware
@@ -22,19 +23,14 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 app.use('/api/v1/auth',adminRouter)
 app.use('/api/v1/englishAlphabet',englishAlphabetRouter)
+app.use('/api/v1/category',categoryRouter)
 
 const notFoundMiddleware = require('./middleware/notFound')
 const errorHandlerMiddleware = require('./middleware/ErrorHandler')
 
-
-
-
-  
 //error middleware
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)
-
-
 
 
  const start = async()=>{
